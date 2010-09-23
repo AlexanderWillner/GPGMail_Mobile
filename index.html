@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>GPGMail mobile</title>
+        <style type="text/css" media="screen">@import "scripts/jqtouch/jqtouch.min.css";</style>
+        <style type="text/css" media="screen">@import "layout/themes/jqt/theme.min.css";</style>
+        <script src="scripts/jquery.1.3.2.min.js" type="application/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/jqtouch/jqtouch.min.js" type="application/javascript" charset="utf-8" defer="defer"></script>
+        <script type="text/javascript">
+            var jQT = new $.jQTouch({
+                icon: 'images/gpgmail_icon.png',
+                addGlossToIcon: false,
+                startupScreen: 'images/gpgmail_startup.png',
+                statusBar: 'black',
+                preloadImages: [
+                    'layout/themes/jqt/img/back_button.png',
+                    'layout/themes/jqt/img/back_button_clicked.png',
+                    'layout/themes/jqt/img/button_clicked.png',
+                    'layout/themes/jqt/img/grayButton.png',
+                    'layout/themes/jqt/img/whiteButton.png',
+                    'layout/themes/jqt/img/loading.gif'
+                    ]
+            });
+            // Some sample Javascript functions:
+            $(function(){
+                // Show a swipe event on swipe test
+                $('#swipeme').swipe(function(evt, data) {                
+                    $(this).html('You swiped <strong>' + data.direction + '</strong>!');
+                });
+                $('a[target="_blank"]').click(function() {
+                    if (confirm('This link opens in a new window.')) {
+                        return true;
+                    } else {
+                        $(this).removeClass('active');
+                        return false;
+                    }
+                });
+                // Page animation callback events
+                $('#pageevents').
+                    bind('pageAnimationStart', function(e, info){ 
+                        $(this).find('.info').append('Started animating ' + info.direction + '&hellip; ');
+                    }).
+                    bind('pageAnimationEnd', function(e, info){
+                        $(this).find('.info').append(' finished animating ' + info.direction + '.<br /><br />');
+                    });
+                // Page animations end with AJAX callback event, example 1 (load remote HTML only first time)
+                $('#callback').bind('pageAnimationEnd', function(e, info){
+                    if (!$(this).data('loaded')) {                      // Make sure the data hasn't already been loaded (we'll set 'loaded' to true a couple lines further down)
+                        $(this).append($('<div>Loading</div>').         // Append a placeholder in case the remote HTML takes its sweet time making it back
+                            load('ajax.html .info', function() {        // Overwrite the "Loading" placeholder text with the remote HTML
+                                $(this).parent().data('loaded', true);  // Set the 'loaded' var to true so we know not to re-load the HTML next time the #callback div animation ends
+                            }));
+                    }
+                });
+                // Orientation callback event
+                $('body').bind('turn', function(e, data){
+                    $('#orient').html('Orientation: ' + data.orientation);
+                });
+            });
+        </script>
+        <style type="text/css" media="screen">
+            body.fullscreen #home .info {
+                display: none;
+            }
+            #about {
+                padding: 100px 10px 40px;
+                text-shadow: rgba(255, 255, 255, 0.3) 0px -1px 0;
+                font-size: 13px;
+                text-align: center;
+                background: #161618;
+            }
+            #about p {
+                margin-bottom: 8px;
+            }
+            #about a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="about" class="selectable">
+                <p><img src="images/gpgmail_icon.png" height="64"/></p>
+                <p><strong>GPG</strong>Mail mobile<br />Version 0.1 alpha<br />
+                    <a href="http://alex.willner.ws">by Alexander Willner</a><br />
+                    
+                </p>
+                <p>based on<br />
+                <a href="http://github.com/senchalabs/jQTouch">jQTouch</a> and
+                <a href="http://www.hanewin.net/encrypt/">JavaScript OpenPGP</a>
+                </p>
+                <p>
+                    <a href="http://twitter.com/gpgmail" target="_blank">@gpgmail on Twitter</a>
+                </p>
+                <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
+        </div>
+        <div id="encrypt">
+            <div class="toolbar">
+                <h1>Encrypt</h1>
+                <a href="#" class="back">Back</a>
+            </div>
+            <form>
+                <ul class="edit rounded">                    
+                    <li>
+                        <select id="lol">
+                            <optgroup label="Receiver (key stored in the options)">
+                                <option value ="123123">John Doe</option>
+                                <option value ="234232">Mr. Smith</option>
+                            </optgroup>
+                        </select>
+                    </li>
+                    <!--<li><input type="text" name="name" placeholder="Receiver (via URL, search, copy&paste, ...)" id="some_name" /></li>-->
+                    <li><textarea placeholder="Your message here" ></textarea></li>
+                    <li>Sign message <span class="toggle"><input type="checkbox" /></span></li>
+                    <li><input type="password" name="sign_password" placeholder="Password" value="" id="sign_password" /></li>
+                  </ul>
+                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="whiteButton goback">Encrypt</a>
+            </form>
+        </div>
+        <div id="decrypt">
+            <div class="toolbar">
+                <h1>Decrypt</h1>
+                <a href="#" class="back">Back</a>
+            </div>
+            <form>
+                <ul class="edit rounded">                    
+                    <li><textarea placeholder="Your encrypted message here" ></textarea></li>
+                    <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
+                    <li><input type="password" name="validate_password" value="" placeholder="Password" id="validate_password" /></li>
+                </ul>
+                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="whiteButton goback">Decrypt</a>
+            </form>
+        </div>
+        <div id="options">
+            <div class="toolbar">
+                <h1>Options</h1>
+                <a href="#" class="back">Back</a>
+            </div>
+            <form>
+                <a class="button slideup" id="addPublicKeyButton" href="#about">add public key</a>
+                <h2 style="color:#fff">Public Keys</h2>
+                <ul class="rounded">
+                    <li class="forward"><a href="#about" class="slideup" style="color:#aaa">John Doe</a></li>
+                    <li class="forward"><a href="#about" class="slideup" style="color:#aaa">Mr. Smith</a></li>
+                </ul>
+                <h2 style="color:#fff">Defaults</h2>
+                <ul class="edit rounded">                    
+                    <li>Sign messages<span class="toggle"><input type="checkbox" /></span></li>
+                    <li>Verify messages<span class="toggle"><input type="checkbox" /></span></li>
+                </ul>
+                <h2 style="color:#fff">Secret Key</h2>
+                <ul class="edit rounded">                    
+                    <li><textarea placeholder="Your secret key here" ></textarea></li>
+                </ul>                
+            </form>
+        </div>
+        <div id="home" class="current">
+            <div class="toolbar">
+                <h1>GPGMail</h1>
+                <a class="button slideup" id="infoButton" href="#about">About</a>
+            </div>
+            <ul class="rounded">
+                <li class="forward"><a href="#encrypt" class="slideup">Encrypt and Sign Mail</a></li>
+                <li class="forward"><a href="#decrypt" class="slideup">Decrypt and Validate Mail</a></li>
+            </ul>
+            <ul class="individual">
+                <li><a href="#options" class="flip">Options</a></li>
+                <li><a href="http://www.gpgmail.org" target="_blank">Donate</a></li>
+            </ul>
+            <div class="info">
+                <p>Add this page to your home screen to view the custom icon, startup screen, and full screen mode.</p>
+            </div>
+        </div>
+    </body>
+</html>
