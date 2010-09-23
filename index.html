@@ -3,93 +3,30 @@
     <head>
         <meta charset="UTF-8" />
         <title>GPGMail</title>
-        <style type="text/css" media="screen">@import "scripts/jqtouch/jqtouch.min.css";</style>
+        <style type="text/css" media="screen">@import "layout/jqtouch.min.css";</style>
         <style type="text/css" media="screen">@import "layout/themes/jqt/theme.min.css";</style>
-        <script src="scripts/jquery.1.3.2.min.js" type="application/javascript" charset="utf-8" defer="defer"></script>
-        <script src="scripts/jqtouch/jqtouch.min.js" type="application/javascript" charset="utf-8" defer="defer"></script>
-        <script type="text/javascript">
-            var jQT = new $.jQTouch({
-                icon: 'images/gpgmail_icon.png',
-                addGlossToIcon: false,
-                startupScreen: 'images/gpgmail_startup.png',
-                statusBar: 'black',
-                preloadImages: [
-                    'layout/themes/jqt/img/back_button.png',
-                    'layout/themes/jqt/img/back_button_clicked.png',
-                    'layout/themes/jqt/img/button_clicked.png',
-                    'layout/themes/jqt/img/grayButton.png',
-                    'layout/themes/jqt/img/whiteButton.png',
-                    'layout/themes/jqt/img/loading.gif'
-                    ]
-            });
-            // Some sample Javascript functions:
-            $(function(){
-                // Show a swipe event on swipe test
-                $('#swipeme').swipe(function(evt, data) {                
-                    $(this).html('You swiped <strong>' + data.direction + '</strong>!');
-                });
-                $('a[target="_blank"]').click(function() {
-                    if (confirm('This link opens in a new window.')) {
-                        return true;
-                    } else {
-                        $(this).removeClass('active');
-                        return false;
-                    }
-                });
-                // Page animation callback events
-                $('#pageevents').
-                    bind('pageAnimationStart', function(e, info){ 
-                        $(this).find('.info').append('Started animating ' + info.direction + '&hellip; ');
-                    }).
-                    bind('pageAnimationEnd', function(e, info){
-                        $(this).find('.info').append(' finished animating ' + info.direction + '.<br /><br />');
-                    });
-                // Page animations end with AJAX callback event, example 1 (load remote HTML only first time)
-                $('#callback').bind('pageAnimationEnd', function(e, info){
-                    if (!$(this).data('loaded')) {                      // Make sure the data hasn't already been loaded (we'll set 'loaded' to true a couple lines further down)
-                        $(this).append($('<div>Loading</div>').         // Append a placeholder in case the remote HTML takes its sweet time making it back
-                            load('ajax.html .info', function() {        // Overwrite the "Loading" placeholder text with the remote HTML
-                                $(this).parent().data('loaded', true);  // Set the 'loaded' var to true so we know not to re-load the HTML next time the #callback div animation ends
-                            }));
-                    }
-                });
-                // Orientation callback event
-                $('body').bind('turn', function(e, data){
-                    $('#orient').html('Orientation: ' + data.orientation);
-                });
-            });
-        </script>
-        <style type="text/css" media="screen">
-            body.fullscreen #home .info {
-                display: none;
-            }
-            #about {
-                padding: 100px 10px 40px;
-                text-shadow: rgba(255, 255, 255, 0.3) 0px -1px 0;
-                font-size: 13px;
-                text-align: center;
-                background: #161618;
-            }
-            #about p {
-                margin-bottom: 8px;
-            }
-            #about a {
-                color: #fff;
-                font-weight: bold;
-                text-decoration: none;
-            }
-        </style>
+        <style type="text/css" media="screen">@import "layout/gpgmail.css";</style>
+        
+        <script language="Javascript" src="scripts/jquery/jquery.1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script language="Javascript" src="scripts/jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+        <script language="Javascript" src="scripts/jqtouch/gpgmail.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script language="Javascript" src="scripts/openpgp/rsa.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script language="Javascript" src="scripts/openpgp/aes-enc.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script language="Javascript" src="scripts/openpgp/base64.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script language="Javascript" src="scripts/openpgp/mouse.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script language="Javascript" src="scripts/openpgp/PGencode.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script language="Javascript" src="scripts/openpgp/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
     </head>
     <body>
         <div id="about" class="selectable">
                 <p><img src="images/gpgmail_icon.png" height="64"/></p>
                 <p><strong>GPG</strong>Mail mobile<br />Version 0.1 alpha<br />
                     <a href="http://alex.willner.ws">by Alexander Willner</a><br />
-                    
                 </p>
                 <p>based on<br />
                 <a href="http://github.com/senchalabs/jQTouch">jQTouch</a> and
-                <a href="http://www.hanewin.net/encrypt/">JavaScript OpenPGP</a>
+                <a href="http://www.hanewin.net/encrypt/">HaneWIN JavaScript OpenPGP</a>
                 </p>
                 <p>
                     <a href="http://twitter.com/gpgmail" target="_blank">@gpgmail on Twitter</a>
@@ -101,7 +38,11 @@
                 <h1>Encrypt</h1>
                 <a href="#" class="back">Back</a>
             </div>
-            <form>
+            <form name="encrypt" action="javascript:encrypt()">
+                <input type="hidden" name="pkey" value="BADelitpUqMZLn+bryZR5rK9J3eu+pRVFP5tpboOlIwO2vqO/rCi8VvT2TPzEJarWhyZ465NIohYCiia9vaGUEp4rsDzFnVNgpON47yPew1zCmOOofituf+X6Qlaxylm5NnO4vnRcmoF4IbGwSCqyGgGor29D75Hovwlj1q6BWHYWwAGKQ==" />
+                <input type="hidden" name="keyid" value="1234567890abcdef" />
+                <input type="hidden" name="pktype" value="RSA" />
+                <input type="hidden" name="" value="" />
                 <ul class="edit rounded">                    
                     <li>
                         <select id="lol">
@@ -112,11 +53,12 @@
                         </select>
                     </li>
                     <!--<li><input type="text" name="name" placeholder="Receiver (via URL, search, copy&paste, ...)" id="some_name" /></li>-->
-                    <li><textarea placeholder="Your message here" ></textarea></li>
+                    <li><textarea placeholder="Your message here" name="text" id="text"></textarea></li>
                     <li>Sign message <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="sign_password" placeholder="Password" value="" id="sign_password" /></li>
+                    <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
                   </ul>
-                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="whiteButton goback">Encrypt</a>
+                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="javascript:document.forms['encrypt'].submit();" class="whiteButton">Encrypt</a>
             </form>
         </div>
         <div id="decrypt">
@@ -153,7 +95,8 @@
                 <h2 style="color:#fff">Secret Key</h2>
                 <ul class="edit rounded">                    
                     <li><textarea placeholder="Your secret key here" ></textarea></li>
-                </ul>                
+                </ul>
+                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="whiteButton goback">Save</a>
             </form>
         </div>
         <div id="home" class="current">
