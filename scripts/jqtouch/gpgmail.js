@@ -62,3 +62,9 @@ $(function() {
 });
 //todo: invoke and use dbIsDefaultSign() here.
 /* ------------------------------------------------------------------------ */
+
+
+function mark(elem) {
+	elem.focus();
+	elem.select();
+}

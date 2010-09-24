@@ -70,6 +70,7 @@
                     <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
                   </ul>
                   <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="document.forms['encrypt'].submit();" class="whiteButton">Encrypt</a>
+                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="mark(document.getElementById('text'));" class="whiteButton">Select Text</a>
             </form>
         </div>
         <div id="decrypt">
@@ -80,11 +81,12 @@
             </div>
             <form name="decrypt" action="javascript:decrypt();">
                 <ul class="edit rounded">                    
-                    <li><textarea placeholder="Your encrypted message here" ></textarea></li>
+                    <li><textarea placeholder="Your encrypted message here" name="text2" id="text2"></textarea></li>
                     <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="validate_password" value="" placeholder="Password" id="validate_password" /></li>
                 </ul>
                 <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#notimplemented" class="whiteButton fade">Decrypt</a>
+                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="mark(document.getElementById('text2'));" class="whiteButton">Select Text</a>
             </form>
         </div>
         <div id="options">
