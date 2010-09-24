@@ -275,6 +275,6 @@ function doEncrypt(keyId,keytyp,pkey,text)
  keyId = hex2s(keyId);
  var cp = GPGpkesk(keyId,keytyp,symAlg,sesskey,pkey)+GPGsed(sesskey,text);
 
- return '-----BEGIN PGP MESSAGE-----\nVersion: haneWIN JavascriptPG v2.0\n\n'
+ return '-----BEGIN PGP MESSAGE-----\nVersion: haneWIN JavascriptPG v2.0 (with GPGMail mobile)\n\n'
         +s2r(cp)+'\n='+s2r(crc24(cp))+'\n-----END PGP MESSAGE-----\n';
 }

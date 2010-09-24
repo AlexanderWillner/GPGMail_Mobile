@@ -50,27 +50,25 @@
                 <a class="button" id="clear" href="#" onClick="document.forms['encrypt'].reset();">clear</a>
             </div>
             <form name="encrypt" action="javascript:encrypt();">
-                <input type="hidden" name="pkey" value="BADelitpUqMZLn+bryZR5rK9J3eu+pRVFP5tpboOlIwO2vqO/rCi8VvT2TPzEJarWhyZ465NIohYCiia9vaGUEp4rsDzFnVNgpON47yPew1zCmOOofituf+X6Qlaxylm5NnO4vnRcmoF4IbGwSCqyGgGor29D75Hovwlj1q6BWHYWwAGKQ==" />
-                <input type="hidden" name="keyid" value="1234567890abcdef" />
-                <input type="hidden" name="pktype" value="RSA" />
-                <input type="hidden" name="" value="" />
-                <ul class="edit rounded">                    
+                <input type="hidden" name="pkey" value="CACbaJ6iH9FMXYQqGqo0scwp9AaTRHXN4C7+eLyUxjHm3SUdOgdjyLQepqaJhanCX6nwTqDB9jCHt0GBxK2/lSo4J+0q5zE9MZ6GrtmGSo/y96+eF8PvEh+GKvNhO7zOLs0Hm2id4AzXVBjVEOJeJLENDUs8shAJ4OXtkrvVp0wF/LGm5d9LFJpNDs+AcRXjx7fOannZlXx1rHNTAz9dWXBeEkYzT6+Uj2gDkGqdHXMsMW90rweTRPr7YYuHQuHEnDygen6+4KUjtgDwKo7z5LAzySBvl3mJKQf730bSH3E/tDCni4qAdOLRbXWtLHVqjgYO77KrLCLM+0vJk1gnyBN/AAURB/9u5GBYBvVR7kMtSInQGYmrfEWRw1al26vrUALCE026g6j5ZbyHb9qk37+qOhFy85oqX4m2hpCcPXURr27tp01QKPZOCeiGuaBoBnc+MwRlsCBZIVu94Iazq/KhwN9XmLiW3rFgfqpsToHvu25x20FqDjrKnT54DUORAZAGhCyCpERPcZHWNYe6P3OfTihsHh5pT0o74p+JlED48OV6/GFGNYGGVwQCtt9iZTmx1bOA9nRRxMWdck867J/+ATEFxJBDiEoqpjMlVuRUT53DqLuyGztL+cCJ6XAQ3szPgQ//3nC/980mrygwbpqjnW8EmfDaCXtBIQA22O6qrfKt+z/m" />
+                <input type="hidden" name="keyid" value="89117214f14b6dac" />
+                <input type="hidden" name="pktype" value="ELGAMAL" />
+                <ul class="edit rounded">
                     <li>
                         <select id="lol">
-                            <optgroup label="Receiver (key stored in the options)">
-                                <option value ="123123">John Doe</option>
-                                <option value ="234232">Mr. Smith</option>
+                            <optgroup label="Receiver">
+                                <option value ="89117214f14b6dac">Alexander Willner</option>
+                                <option value ="07eae49adbcbe671">GPGMail Project Team</option>
                             </optgroup>
                         </select>
                     </li>
                     <!--<li><input type="text" name="name" placeholder="Receiver (via URL, search, copy&paste, ...)" id="some_name" /></li>-->
-                    <li><textarea placeholder="Your message here" name="text" id="text"></textarea></li>
+                    <li><textarea placeholder="Your unencrypted message here" name="text" id="text"></textarea></li>
                     <li>Sign message <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="sign_password" placeholder="Password" value="" id="sign_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
                   </ul>
-                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="document.forms['encrypt'].submit();" class="whiteButton">Encrypt</a>
-                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="mark(document.getElementById('text'));" class="whiteButton">Select Text</a>
+                  <a style="margin:0 10px;" href="#" onClick="document.forms['encrypt'].submit();" class="grayButton">Encrypt</a>
             </form>
         </div>
         <div id="decrypt">
@@ -85,8 +83,7 @@
                     <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="validate_password" value="" placeholder="Password" id="validate_password" /></li>
                 </ul>
-                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#notimplemented" class="whiteButton fade">Decrypt</a>
-                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="mark(document.getElementById('text2'));" class="whiteButton">Select Text</a>
+                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Decrypt</a>
             </form>
         </div>
         <div id="options">
@@ -96,11 +93,22 @@
             </div>
             <form name="options" action="javascript:dbSave();">
                 <a class="button fade" id="addPublicKeyButton" href="#notimplemented" class="fade">add public key</a>
-                <h2 style="color:#fff">Public Keys</h2>
-                <ul class="rounded">
-                    <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">John Doe</a></li>
-                    <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">Mr. Smith</a></li>
-                </ul>
+                <h2 style="color:#fff">Stored Public Keys</h2>
+<!--                <ul class="rounded">
+                    <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">Alexander Willner</a></li>
+                    <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">GPGMail Project Team</a></li>
+-->
+                <ul class="edit rounded">
+                    <li>
+                        <select id="lol">
+                            <optgroup label="Stored Public Keys">
+                                <option value ="89117214f14b6dac">Alexander Willner</option>
+                                <option value ="07eae49adbcbe671">GPGMail Project Team</option>
+                            </optgroup>
+                        </select>
+                    </li>
+                  </ul>
+                  <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Delete</a>
                 <h2 style="color:#fff">Defaults</h2>
                 <ul class="edit rounded">                    
                     <li>Sign messages<span class="toggle"><input type="checkbox" name="defaultSign" /></span></li>
@@ -108,9 +116,9 @@
                 </ul>
                 <h2 style="color:#fff">Secret Key</h2>
                 <ul class="edit rounded">                    
-                    <li><textarea placeholder="Your secret key here" ></textarea></li>
+                    <li><textarea placeholder="Your secret key here (stored within an HTML 5 database)" ></textarea></li>
                 </ul>
-                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#notimplemented" class="whiteButton fade">Save</a>
+                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Save</a>
             </form>
         </div>
         <div id="home" class="current">
