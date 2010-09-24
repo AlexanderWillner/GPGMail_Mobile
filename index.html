@@ -128,10 +128,21 @@
                     </li>
                   </ul>
                   <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Delete</a>
-                <h2 style="color:#fff">Defaults</h2>
-                <ul class="edit rounded">                    
-                    <li>Sign messages<span class="toggle"><input type="checkbox" name="defaultSign" /></span></li>
-                    <li>Verify messages<span class="toggle"><input type="checkbox" /></span></li>
+                <h2 style="color:#fff">Options</h2>
+                <ul class="edit rounded">
+                    <li>Sign by default<span class="toggle"><input type="checkbox" name="defaultSign" /></span></li>
+                    <li>Verify by default<span class="toggle"><input type="checkbox" /></span></li>
+                </ul>
+                <h2>Layout</h2>
+                <ul class="edit rounded">
+                    <li>
+                        <select id="layout">
+                            <optgroup label="Layout">
+                                <option value ="jqt">jQTouch</option>
+                                <option value ="apple">Apple</option>
+                            </optgroup>
+                        </select>
+                    </li>
                 </ul>
                 <h2 style="color:#fff">Secret Key</h2>
                 <ul class="edit rounded">                    
@@ -146,8 +157,8 @@
                 <a class="button fade" id="infoButton" href="#about">About</a>
             </div>
             <ul class="rounded">
-                <li class="forward"><a href="#encrypt" class="slide">Encrypt and Sign Mail</a></li>
-                <li class="forward"><a href="#decrypt" class="slide">Decrypt and Validate Mail</a></li>
+                <li class="arrow"><a href="#encrypt" class="slide">Encrypt and Sign Mail</a></li>
+                <li class="arrow"><a href="#decrypt" class="slide">Decrypt and Validate Mail</a></li>
             </ul>
             <ul class="individual">
                 <li><a href="#options" class="flip">Options</a></li>
