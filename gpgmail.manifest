@@ -1,3 +1,4 @@
+CACHE MANIFEST
 images/gpgmail_icon.png
 images/gpgmail_startup.png
 index.html
@@ -38,6 +39,8 @@ layout/themes/jqt/img/toolbar.png
 layout/themes/jqt/img/whiteButton.png
 layout/themes/jqt/theme.css
 layout/themes/jqt/theme.min.css
+scripts/db/gpgmail.js
+scripts/generateManifest.sh
 scripts/jqtouch/gpgmail.js
 scripts/jqtouch/jqtouch.css
 scripts/jqtouch/jqtouch.js
