@@ -65,7 +65,7 @@
                     <!--<li><input type="text" name="name" placeholder="Receiver (via URL, search, copy&paste, ...)" id="some_name" /></li>-->
                     <li><textarea placeholder="Your unencrypted message here" name="text" id="text"></textarea></li>
                     <li>Sign message <span class="toggle"><input type="checkbox" /></span></li>
-                    <li><input type="password" name="sign_password" placeholder="Password" value="" id="sign_password" /></li>
+                    <li><input type="password" name="sign_password" placeholder="Password to sign..." value="" id="sign_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
                   </ul>
                   <a style="margin:0 10px;" href="#" onClick="document.forms['encrypt'].submit();" class="grayButton">Encrypt</a>
@@ -81,7 +81,8 @@
                 <ul class="edit rounded">                    
                     <li><textarea placeholder="Your encrypted message here" name="text2" id="text2"></textarea></li>
                     <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
-                    <li><input type="password" name="validate_password" value="" placeholder="Password" id="validate_password" /></li>
+                    <li><input type="password" name="validate_password" value="" placeholder="Password to decrypt..." id="validate_password" /></li>
+                    <li><input type="text" disabled="disabled" name="howLongDecrypt" placeholder="time needed for decryption" value="" id="howLongDecrypt" /></li>
                 </ul>
                 <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Decrypt</a>
             </form>
@@ -92,7 +93,7 @@
                 <a href="#" class="back">Back</a>
             </div>
             <form name="options" action="javascript:dbSave();">
-                <a class="button fade" id="addPublicKeyButton" href="#notimplemented" class="fade">add public key</a>
+                <a class="button fade" id="addPublicKeyButton" href="#notimplemented" class="fade">add key</a>
                 <h2 style="color:#fff">Stored Public Keys</h2>
 <!--                <ul class="rounded">
                     <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">Alexander Willner</a></li>
