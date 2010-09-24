@@ -48,3 +48,17 @@
                     $('#orient').html('Orientation: ' + data.orientation);
                 });
             });
+
+
+/* Option: default sign --------------------------------------------------- */
+$(function() { 
+                $('input[name="defaultSign"]').bind('click',function() { 
+                        if($(this).is(':checked')) { 
+                            dbSetDefaultSign(1); 
+                        } else  { 
+                            dbSetDefaultSign(0);
+                        } 
+                }); 
+});
+//todo: invoke and use dbIsDefaultSign() here.
+/* ------------------------------------------------------------------------ */

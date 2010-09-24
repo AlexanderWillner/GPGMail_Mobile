@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html manifest="gpgmail.manifest">
     <head>
         <meta charset="UTF-8" />
         <title>GPGMail</title>
@@ -10,6 +10,8 @@
         <script language="Javascript" src="scripts/jquery/jquery.1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
         <script language="Javascript" src="scripts/jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
         <script language="Javascript" src="scripts/jqtouch/gpgmail.js" type="text/javascript" charset="utf-8"></script>
+
+        <script language="Javascript" src="scripts/db/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
         
         <script language="Javascript" src="scripts/openpgp/rsa.js" type="text/javascript" charset="utf-8" defer="defer"></script>
         <script language="Javascript" src="scripts/openpgp/aes-enc.js" type="text/javascript" charset="utf-8" defer="defer"></script>
@@ -89,7 +91,7 @@
                 </ul>
                 <h2 style="color:#fff">Defaults</h2>
                 <ul class="edit rounded">                    
-                    <li>Sign messages<span class="toggle"><input type="checkbox" /></span></li>
+                    <li>Sign messages<span class="toggle"><input type="checkbox" name="defaultSign" /></span></li>
                     <li>Verify messages<span class="toggle"><input type="checkbox" /></span></li>
                 </ul>
                 <h2 style="color:#fff">Secret Key</h2>
