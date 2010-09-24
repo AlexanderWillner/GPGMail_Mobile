@@ -24,7 +24,7 @@
         <div id="about" class="selectable">
                 <p><img src="images/gpgmail_icon.png" height="64"/></p>
                 <p><strong>GPG</strong>Mail mobile<br />Version 0.1 alpha<br />
-                    <a href="http://alex.willner.ws">by Alexander Willner</a><br />
+                    <a href="mailto:alex@willner.ws">by Alexander Willner</a><br />
                 </p>
                 <p>based on<br />
                 <a href="http://github.com/senchalabs/jQTouch">jQTouch</a> and
@@ -35,12 +35,21 @@
                 </p>
                 <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
         </div>
+        <div id="notimplemented" class="selectable">
+                <p><img src="images/gpgmail_fail.png" height="64"/></p>
+                <p><strong>GPG</strong>Mail mobile<br />Version 0.1 alpha<br />
+                    <a href="mailto:alex@willner.ws">by Alexander Willner</a><br />
+                </p>
+                <p>work in progress...<br />this method is not implemented yet.</p>
+                <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
+        </div>        
         <div id="encrypt">
             <div class="toolbar">
                 <h1>Encrypt</h1>
                 <a href="#" class="back">Back</a>
+                <a class="button" id="clear" href="#" onClick="document.forms['encrypt'].reset();">clear</a>
             </div>
-            <form name="encrypt" action="javascript:encrypt()">
+            <form name="encrypt" action="javascript:encrypt();">
                 <input type="hidden" name="pkey" value="BADelitpUqMZLn+bryZR5rK9J3eu+pRVFP5tpboOlIwO2vqO/rCi8VvT2TPzEJarWhyZ465NIohYCiia9vaGUEp4rsDzFnVNgpON47yPew1zCmOOofituf+X6Qlaxylm5NnO4vnRcmoF4IbGwSCqyGgGor29D75Hovwlj1q6BWHYWwAGKQ==" />
                 <input type="hidden" name="keyid" value="1234567890abcdef" />
                 <input type="hidden" name="pktype" value="RSA" />
@@ -60,21 +69,22 @@
                     <li><input type="password" name="sign_password" placeholder="Password" value="" id="sign_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
                   </ul>
-                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="javascript:document.forms['encrypt'].submit();" class="whiteButton">Encrypt</a>
+                  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" onClick="document.forms['encrypt'].submit();" class="whiteButton">Encrypt</a>
             </form>
         </div>
         <div id="decrypt">
             <div class="toolbar">
                 <h1>Decrypt</h1>
                 <a href="#" class="back">Back</a>
+                <a class="button" id="clear" href="#" onClick="document.forms['decrypt'].reset();">clear</a>
             </div>
-            <form>
+            <form name="decrypt" action="javascript:decrypt();">
                 <ul class="edit rounded">                    
                     <li><textarea placeholder="Your encrypted message here" ></textarea></li>
                     <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="validate_password" value="" placeholder="Password" id="validate_password" /></li>
                 </ul>
-                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="whiteButton goback">Decrypt</a>
+                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#notimplemented" class="whiteButton fade">Decrypt</a>
             </form>
         </div>
         <div id="options">
@@ -82,12 +92,12 @@
                 <h1>Options</h1>
                 <a href="#" class="back">Back</a>
             </div>
-            <form>
-                <a class="button fade" id="addPublicKeyButton" href="#about">add public key</a>
+            <form name="options" action="javascript:dbSave();">
+                <a class="button fade" id="addPublicKeyButton" href="#notimplemented" class="fade">add public key</a>
                 <h2 style="color:#fff">Public Keys</h2>
                 <ul class="rounded">
-                    <li class="forward"><a href="#about" class="slideup" style="color:#aaa">John Doe</a></li>
-                    <li class="forward"><a href="#about" class="slideup" style="color:#aaa">Mr. Smith</a></li>
+                    <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">John Doe</a></li>
+                    <li class="forward"><a href="#notimplemented" class="fade" style="color:#aaa">Mr. Smith</a></li>
                 </ul>
                 <h2 style="color:#fff">Defaults</h2>
                 <ul class="edit rounded">                    
@@ -98,7 +108,7 @@
                 <ul class="edit rounded">                    
                     <li><textarea placeholder="Your secret key here" ></textarea></li>
                 </ul>
-                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="whiteButton goback">Save</a>
+                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#notimplemented" class="whiteButton fade">Save</a>
             </form>
         </div>
         <div id="home" class="current">

@@ -49,3 +49,8 @@ function dbError(tx, error) {
 
 if (db != null)
     addEventListener('load', loaded, false);
+    
+
+function dbSave() {
+    alert ("Not implemented yet");
+}

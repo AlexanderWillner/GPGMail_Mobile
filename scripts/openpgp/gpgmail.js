@@ -40,3 +40,7 @@ function encrypt() {
  var endTime=new Date();
  document.encrypt.howLong.value=(endTime.getTime()-startTime.getTime())/1000.0 + " ms";
 }
+
+function decrypt() {
+    alert ("Not implemented yet");
+}
