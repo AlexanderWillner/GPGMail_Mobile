@@ -1,16 +1,8 @@
             var jQT = new $.jQTouch({
                 icon: 'images/gpgmail_icon.png',
-                addGlossToIcon: false,
+                addGlossToIcon: true,
                 startupScreen: 'images/gpgmail_startup.png',
-                statusBar: 'black',
-                preloadImages: [
-                    'layout/themes/jqt/img/back_button.png',
-                    'layout/themes/jqt/img/back_button_clicked.png',
-                    'layout/themes/jqt/img/button_clicked.png',
-                    'layout/themes/jqt/img/grayButton.png',
-                    'layout/themes/jqt/img/whiteButton.png',
-                    'layout/themes/jqt/img/loading.gif'
-                    ]
+                statusBar: 'black'
             });
             // Some sample Javascript functions:
             $(function(){
