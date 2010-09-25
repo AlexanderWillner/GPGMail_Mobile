@@ -54,3 +54,10 @@ $(function() {
 });
 //todo: invoke and use dbIsDefaultSign() here.
 /* ------------------------------------------------------------------------ */
+
+
+function addSendButton () {
+   document.getElementById("sendMailButton").href="mailto:?body=" + encodeURIComponent(document.getElementById("text").value);
+   document.getElementById("sendMailButton").removeAttribute('disabled');
+   document.getElementById("sendMailButton").style.color = "#fff";
+}

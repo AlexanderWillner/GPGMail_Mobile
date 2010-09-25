@@ -68,7 +68,8 @@
                     <li><input type="password" name="sign_password" placeholder="Password to sign..." value="" id="sign_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
                   </ul>
-                  <a style="margin:0 10px;" href="#" onClick="document.forms['encrypt'].submit();" class="grayButton">Encrypt</a>
+                  <a style="margin:0 10px;" href="#" onClick="document.forms['encrypt'].submit(); addSendButton();" class="grayButton">Encrypt</a>
+                  <a style="margin:0 10px; color:#333;" href="#" id="sendMailButton" class="grayButton" target="_blank">Send Mail</a>
             </form>
         </div>
         <div id="decrypt">
