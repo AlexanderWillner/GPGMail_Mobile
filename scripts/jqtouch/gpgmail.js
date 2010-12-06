@@ -57,7 +57,7 @@ $(function() {
 
 
 function addSendButton () {
-   document.getElementById("sendMailButton").href="mailto:?body=" + encodeURIComponent(document.getElementById("text").value);
+   document.getElementById("sendMailButton").href="mailto:alex@willner.ws?subject=Encrypted:%20Test&body=" + encodeURIComponent(document.getElementById("text").value);
    document.getElementById("sendMailButton").removeAttribute('disabled');
    document.getElementById("sendMailButton").style.color = "#fff";
 }
