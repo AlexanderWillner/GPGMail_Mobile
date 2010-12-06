@@ -55,11 +55,11 @@
                 <input type="hidden" name="pktype" value="ELGAMAL" />
                 <ul class="edit rounded">
                     <li>
-                        <select id="receiver">
-                            <optgroup label="Receiver">
+                        <select id="receiver" multiple="multiple" name="receiver">
+<!--                            <optgroup label="Receiver">-->
                                 <option value ="89117214f14b6dac">Alexander Willner</option>
                                 <option value ="07eae49adbcbe671">GPGMail Project Team</option>
-                            </optgroup>
+<!--                            </optgroup>-->
                         </select>
                     </li>
                     <!--<li><input type="text" name="name" placeholder="Receiver (via URL, search, copy&paste, ...)" id="some_name" /></li>-->
@@ -99,8 +99,10 @@
                     <li><input type="text" name="searchstring" placeholder="String" value="" id="searchstring" /></li>
                 </ul>
                 <h2 style="color:#fff;">Download</h2>
+                
                 <ul class="edit rounded">
                     <li><input type="text" name="download" placeholder="http://" value="http://" id="download" /></li>
+                    <li style="font-weight:normal;"><input type="checkbox" id="download" name="download" value="download">&nbsp;Do not store locally</li>
                 </ul>
                 <h2 style="color:#fff;">Copy & Paste</h2>
                 <ul class="edit rounded">
@@ -116,18 +118,16 @@
                 <a href="#" class="back">Back</a>
             </div>
             <form name="options" action="javascript:dbSave();">
-                <a class="button fade" id="addPublicKeyButton" href="#addkey">add key</a>
-                <h2 style="color:#fff">Stored Public Keys</h2>
+                <h2 style="color:#fff">Public Keys</h2>
                 <ul class="edit rounded">
                     <li>
-                        <select id="storedkeys">
-                            <optgroup label="Stored Public Keys">
-                                <option value ="89117214f14b6dac">Alexander Willner</option>
-                                <option value ="07eae49adbcbe671">GPGMail Project Team</option>
-                            </optgroup>
+                        <select id="publickeys" name="Public Keys" multiple="multiple">
+                            <option value ="89117214f14b6dac" selected="selected">Alexander Willner</option>
+                            <option value ="07eae49adbcbe671">GPGMail Project Team</option>
                         </select>
                     </li>
                   </ul>
+                  <a style="margin:0 10px; color:#000;" id="addPublicKeyButton" href="#addkey" class="whiteButton fade">Add</a>
                   <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Delete</a>
                 <h2 style="color:#fff">Options</h2>
                 <ul class="edit rounded">
@@ -145,11 +145,18 @@
                         </select>
                     </li>
                 </ul>
-                <h2 style="color:#fff">Secret Key</h2>
+                <h2 style="color:#fff">Secret Keys</h2>
                 <ul class="edit rounded">                    
-                    <li><textarea placeholder="Your secret key here (stored within an HTML 5 database)" ></textarea></li>
+<!--                    <li><textarea placeholder="Your secret key here (stored within an HTML 5 database)" ></textarea></li>-->
+                    <li>
+                        <select id="secretkeys" name="Secret Keys" multiple="multiple">
+                            <option value ="89117214f14b6dac" selected="selected">Alexander Willner</option>
+                        </select>
+                    </li>
+
                 </ul>
-                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Save</a>
+                <a style="margin:0 10px; color:#000;" id="addPublicKeyButton" href="#addkey" class="whiteButton fade">Add</a>
+                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Delete</a>
             </form>
         </div>
         <div id="home" class="current">
