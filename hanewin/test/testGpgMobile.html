@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Unit Test for GPGMobile</title>
+    <link rel="stylesheet" media="all" href="testHanewin.css">
+  </head>
+  <body>
+    <h1>Unit Test for GPGMobile</h1>
+    <h2>Result</h2>
+    <div><ul id="results"></ul></div>
+    <h2>Output</h2>
+    <h3>Encrypted text</h3>
+    <pre id="text_enc" name="text_enc"</pre>
+    <h3>Plain text</h3>
+    <pre id="text_plain" name="text_plain"</pre>
+    <h2>Input</h2>
+    <h3>Secret Key</h3>
+    <pre id="key_sec" name="key_sec"</pre>
+    <h3>Public Key</h3>
+    <pre id="key_pub" name="key_pub"</pre>
+
+    <script src="../rsa.js"></script>
+    <script src="../aes-enc.js"></script>
+    <script src="../base64.js"></script>
+    <script src="../mouse.js"></script>
+    <script src="../PGencode.js"></script>
+    <script src="../cast5.js"></script>
+    <script src="../sha1.js"></script>
+    <script src="../PGdecode.js"></script>
+    <script src="../PGpubkey.js"></script>
+    <script src="gpgmobile.interface.js"></script>
+    <script src="gpgmobile.js"></script>
+    <script src="testHanewin.lib.js"></script>
+    <script src="testGpgMobile.js"></script>
+  </body>
+</html>

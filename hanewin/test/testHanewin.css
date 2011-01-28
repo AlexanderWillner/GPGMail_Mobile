@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+
+body, select, input, textarea, div {
+    font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    color: #5C96B0;;
+    font-size:xx-large;
+    font-weight: normal;
+}
+
+h2 {
+    font-size:x-large;
+}
+
+h3 {
+    font-size:large;
+}
+
+pre {
+    background: #ddd;
+    min-height:4em;
+}
+
+.pass, .fail {
+    font-weight: bold;
+}
+
+.pass {
+    color: green;
+}
+
+.fail {
+    color: red;
+}
+
+.info {
+    color: #999;
+    font-size:smaller;
+}
