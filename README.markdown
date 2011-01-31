@@ -4,8 +4,4 @@ This is the source code of an HTML 5 based OpenPGP application for mobile phones
 
 An online demo is available at [http://goo.gl/Vr36](http://goo.gl/Vr36).
 
-The project is currently in a heavy state of development. For the latest news and updates check out the web site [http://www.gpgmail.org](http://www.gpgmail.org) and the mailing lists at
-
-* [http://lists.gpgmail.org/mailman/listinfo/gpgmail-announce](http://lists.gpgmail.org/mailman/listinfo/gpgmail-announce)
-* [http://lists.gpgmail.org/mailman/listinfo/gpgmail-users](http://lists.gpgmail.org/mailman/listinfo/gpgmail-users)
-* [http://lists.gpgmail.org/mailman/listinfo/gpgmail-devel](http://lists.gpgmail.org/mailman/listinfo/gpgmail-devel)
+The project is currently in a heavy state of development. For the latest news and updates check out the web site [http://www.gpgtools.org](http://www.gpgtools.org).
