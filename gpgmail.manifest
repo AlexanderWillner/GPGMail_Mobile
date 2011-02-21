@@ -1,4 +1,5 @@
 CACHE MANIFEST
+images/forbidden.png
 images/gpgmail_fail.png
 images/gpgmail_icon.png
 images/gpgmail_startup.png
@@ -42,6 +43,15 @@ layout/themes/jqt/theme.css
 layout/themes/jqt/theme.min.css
 scripts/db/gpgmail.js
 scripts/generateManifest.sh
+scripts/hanewin/aes-enc.js
+scripts/hanewin/base64.js
+scripts/hanewin/cast5.js
+scripts/hanewin/mouse.js
+scripts/hanewin/PGdecode.js
+scripts/hanewin/PGencode.js
+scripts/hanewin/PGpubkey.js
+scripts/hanewin/rsa.js
+scripts/hanewin/sha1.js
 scripts/jqtouch/gpgmail.js
 scripts/jqtouch/jqtouch.css
 scripts/jqtouch/jqtouch.js
@@ -49,9 +59,20 @@ scripts/jqtouch/jqtouch.min.js
 scripts/jqtouch/jqtouch.transitions.js
 scripts/jquery/jquery.1.3.2.min.js
 scripts/jquery/jquery.1.4.2.min.js
-scripts/openpgp/aes-enc.js
-scripts/openpgp/base64.js
+scripts/openpgp/core.js
 scripts/openpgp/gpgmail.js
-scripts/openpgp/mouse.js
-scripts/openpgp/PGencode.js
-scripts/openpgp/rsa.js
+tests/core.css
+tests/data/test.gpg.public.asc
+tests/data/test.gpg.secret.asc
+tests/hanewin/index.html
+tests/hanewin/index.js
+tests/hanewin/index_old.core.js
+tests/hanewin/index_old.css
+tests/hanewin/index_old.html
+tests/hanewin/index_old.js
+tests/hanewin/perf_dec.html
+tests/hanewin/perf_dec.js
+tests/hanewin/perf_enc.html
+tests/hanewin/perf_enc.js
+tests/qunit/qunit.css
+tests/qunit/qunit.js
