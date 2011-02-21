@@ -17,14 +17,14 @@ function gpgDecrypt(seckey, message) {
 
 function gpgEncryptFromIdentifier(identifier, message) {
     var pubkey = ReadFile("http://pgp.mit.edu:11371/pks/lookup?op=get&search="
-                          + identifier).split("\n");
+                          + identifier).split("\r\n");
     var token = 0;
     var result = "";
     for (var i = 0; i < pubkey.length; i++) {
         if (token == 0 && pubkey[i] != "-----BEGIN PGP PUBLIC KEY BLOCK-----")
             continue;
         token = 1;
-        result += pubkey[i] + "\n";
+        result += pubkey[i] + "\r\n";
         if (pubkey[i] == "-----END PGP PUBLIC KEY BLOCK-----")
             break;
     }

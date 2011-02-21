@@ -29,10 +29,18 @@ function ReadFile(fileUrl) {
 }
 
 function GetKeyValue(info, type) {
-  var Ausdruck = new RegExp("SK-"+type+":(.+)");
+  var Ausdruck = new RegExp("SK-"+type+":[0-9]+,(.+)");
   Ausdruck.exec(info);
   return(RegExp.$1);
 }
+
+function GetMessageValue(message) {
+    var regex = /---Start of literal data---\n([\s\S]*)\n---\n/
+    regex.exec(message);
+    return RegExp.$1;
+}
+
+
 
 function Expect(descr, expected, result) {
     if (expected == result) {
