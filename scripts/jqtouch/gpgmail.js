@@ -6,8 +6,8 @@
             });
             // Some sample Javascript functions:
             $(function(){
-                fixCopyPaste($('#text2'));
                 fixCopyPaste($('#text'));
+                fixCopyPaste($('#text2'));
 
                 // Show a swipe event on swipe test
                 $('#swipeme').swipe(function(evt, data) {
@@ -57,13 +57,6 @@ $(function() {
 });
 //todo: invoke and use dbIsDefaultSign() here.
 /* ------------------------------------------------------------------------ */
-
-
-function addSendButton () {
-   document.getElementById("sendMailButton").href="mailto:alex@willner.ws?subject=Encrypted:%20Test&body=" + encodeURIComponent(document.getElementById("text").value);
-   document.getElementById("sendMailButton").removeAttribute('disabled');
-   document.getElementById("sendMailButton").style.color = "#fff";
-}
 
  function fixCopyPaste(el) {
         el.bind('paste', function(e) {
