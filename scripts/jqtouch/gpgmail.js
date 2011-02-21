@@ -6,8 +6,11 @@
             });
             // Some sample Javascript functions:
             $(function(){
+                fixCopyPaste($('#text2'));
+                fixCopyPaste($('#text'));
+
                 // Show a swipe event on swipe test
-                $('#swipeme').swipe(function(evt, data) {                
+                $('#swipeme').swipe(function(evt, data) {
                     $(this).html('You swiped <strong>' + data.direction + '</strong>!');
                 });
                 $('a[target="_blank"]').click(function() {
@@ -20,7 +23,7 @@
                 });
                 // Page animation callback events
                 $('#pageevents').
-                    bind('pageAnimationStart', function(e, info){ 
+                    bind('pageAnimationStart', function(e, info){
                         $(this).find('.info').append('Started animating ' + info.direction + '&hellip; ');
                     }).
                     bind('pageAnimationEnd', function(e, info){
@@ -43,14 +46,14 @@
 
 
 /* Option: default sign --------------------------------------------------- */
-$(function() { 
-                $('input[name="defaultSign"]').bind('click',function() { 
-                        if($(this).is(':checked')) { 
-                            dbSetDefaultSign(1); 
-                        } else  { 
+$(function() {
+                $('input[name="defaultSign"]').bind('click',function() {
+                        if($(this).is(':checked')) {
+                            dbSetDefaultSign(1);
+                        } else  {
                             dbSetDefaultSign(0);
-                        } 
-                }); 
+                        }
+                });
 });
 //todo: invoke and use dbIsDefaultSign() here.
 /* ------------------------------------------------------------------------ */
@@ -61,3 +64,20 @@ function addSendButton () {
    document.getElementById("sendMailButton").removeAttribute('disabled');
    document.getElementById("sendMailButton").style.color = "#fff";
 }
+
+ function fixCopyPaste(el) {
+        el.bind('paste', function(e) {
+            var element = $(this).context;
+
+            var text = $(this).val();
+            var start = element.selectionStart;
+            var pastedText = e.originalEvent.clipboardData.getData('text/plain');
+            $(this).val(text.substring(0, element.selectionStart)
+                +pastedText
+                +text.substring(element.selectionEnd, text.length));
+            element.selectionStart = start+pastedText.length;
+            element.selectionEnd = element.selectionStart;
+        });
+    }
+
+

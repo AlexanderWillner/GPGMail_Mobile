@@ -6,19 +6,21 @@
         <style type="text/css" media="screen">@import "layout/jqtouch.min.css";</style>
         <style type="text/css" media="screen">@import "layout/themes/jqt/theme.min.css";</style>
         <style type="text/css" media="screen">@import "layout/gpgmail.css";</style>
-        
+
         <script src="scripts/jquery/jquery.1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="scripts/jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="scripts/jqtouch/gpgmail.js" type="text/javascript" charset="utf-8"></script>
 
         <script src="scripts/db/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
-        
-        <script src="scripts/openpgp/rsa.js" type="text/javascript" charset="utf-8" defer="defer"></script>
-        <script src="scripts/openpgp/aes-enc.js" type="text/javascript" charset="utf-8" defer="defer"></script>
-        <script src="scripts/openpgp/base64.js" type="text/javascript" charset="utf-8" defer="defer"></script>
-        <script src="scripts/openpgp/mouse.js" type="text/javascript" charset="utf-8" defer="defer"></script>
-        <script src="scripts/openpgp/PGencode.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+
+        <script src="scripts/hanewin/rsa.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/hanewin/aes-enc.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/hanewin/base64.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/hanewin/mouse.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/hanewin/PGencode.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/hanewin/PGdecode.js" type="text/javascript" charset="utf-8" defer="defer"></script>
         <script src="scripts/openpgp/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+        <script src="scripts/openpgp/core.js" type="text/javascript" charset="utf-8" defer="defer"></script>
     </head>
     <body>
         <div id="about" class="selectable">
@@ -42,7 +44,7 @@
                 </p>
                 <p>work in progress...<br />this method is not implemented yet.</p>
                 <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
-        </div>        
+        </div>
         <div id="encrypt">
             <div class="toolbar">
                 <h1>Encrypt</h1>
@@ -50,19 +52,16 @@
                 <a class="button" id="clearencrypt" href="#" onClick="document.forms['encrypt'].reset();">clear</a>
             </div>
             <form name="encrypt" action="javascript:encrypt();">
-                <input type="hidden" name="pkey" value="CACbaJ6iH9FMXYQqGqo0scwp9AaTRHXN4C7+eLyUxjHm3SUdOgdjyLQepqaJhanCX6nwTqDB9jCHt0GBxK2/lSo4J+0q5zE9MZ6GrtmGSo/y96+eF8PvEh+GKvNhO7zOLs0Hm2id4AzXVBjVEOJeJLENDUs8shAJ4OXtkrvVp0wF/LGm5d9LFJpNDs+AcRXjx7fOannZlXx1rHNTAz9dWXBeEkYzT6+Uj2gDkGqdHXMsMW90rweTRPr7YYuHQuHEnDygen6+4KUjtgDwKo7z5LAzySBvl3mJKQf730bSH3E/tDCni4qAdOLRbXWtLHVqjgYO77KrLCLM+0vJk1gnyBN/AAURB/9u5GBYBvVR7kMtSInQGYmrfEWRw1al26vrUALCE026g6j5ZbyHb9qk37+qOhFy85oqX4m2hpCcPXURr27tp01QKPZOCeiGuaBoBnc+MwRlsCBZIVu94Iazq/KhwN9XmLiW3rFgfqpsToHvu25x20FqDjrKnT54DUORAZAGhCyCpERPcZHWNYe6P3OfTihsHh5pT0o74p+JlED48OV6/GFGNYGGVwQCtt9iZTmx1bOA9nRRxMWdck867J/+ATEFxJBDiEoqpjMlVuRUT53DqLuyGztL+cCJ6XAQ3szPgQ//3nC/980mrygwbpqjnW8EmfDaCXtBIQA22O6qrfKt+z/m" />
-                <input type="hidden" name="keyid" value="89117214f14b6dac" />
+                <input type="hidden" name="pkey" value="CAC2PVFmVlYbpNDPU+nfc8U/fu/SFs21AEOmUU1SAf8Eh1a7vHs42TpKUyS9VhgnEetFOapfnUhCpWF+HunJ5Fx5jgeqNpogNp7tToLjHWXbYyv57WB9YDAwC2AMt+rX/Hh7T1CQtoMX5oSGbe0p2UlAF77TeSmH0n3Se9U7qPGD8E3/qYcoi2Gs877JEAAfXqkNhQuglv7mJyMRL69yglOntLzBXTspso9qdkc2uH1VCQpJG/hwBIcrf8D3/Iiu5GiG1BQ7g6ujdURE+yc76f8KKfIbfmmkutED0YjvZTkXiq6JeHLygoIAj1yZ5dBFDtR/6qW/0Dh72aHGWBM88rLrAAMFCACb1H1XxpJwiLOiEHeeYICOSyE1uPONJPXnCG+nR3rP8u9jV5k8j2h6lE9lJLt7VHqjnmyKgvLFTLUgn5mNSmFgSU7B+FlxdWrTLzpk3aJAWjLPAIQUOaxakjkVgTk8ggX++nDya7UAJ/g20YpxEXV2UaFeh2wO0/EuS84jWnKXjBuKsvzm97FXN1eF75/dyD0awBN7dW8ckgjrrrA+uVVFtdI+XqqVBk8C0ZIHCaRAOHLlN2CallDm1FbOZpTE3H+untHx5PuYaocpFz1adCpXYn+SQ0HkqFWLONz5u1WxkJ9gn1VS5HpLbNhgKap9d92/U41BoEsbgzIxSC5tQNO5" />
+                <input type="hidden" name="keyid" value="c71fa5a9b200c2a6" />
                 <input type="hidden" name="pktype" value="ELGAMAL" />
                 <ul class="edit rounded">
                     <li>
                         <select id="receiver" multiple="multiple" name="receiver">
-<!--                            <optgroup label="Receiver">-->
                                 <option value ="89117214f14b6dac">Alexander Willner</option>
                                 <option value ="07eae49adbcbe671">GPGMail Project Team</option>
-<!--                            </optgroup>-->
                         </select>
                     </li>
-                    <!--<li><input type="text" name="name" placeholder="Receiver (via URL, search, copy&paste, ...)" id="some_name" /></li>-->
                     <li><textarea placeholder="Your unencrypted message here" name="text" id="text"></textarea></li>
                     <li>Sign message <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="sign_password" placeholder="Password to sign..." value="" id="sign_password" /></li>
@@ -79,13 +78,13 @@
                 <a class="button" id="cleardecrypt" href="#" onClick="document.forms['decrypt'].reset();">clear</a>
             </div>
             <form name="decrypt" action="javascript:decrypt();">
-                <ul class="edit rounded">                    
+                <ul class="edit rounded">
                     <li><textarea placeholder="Your encrypted message here" name="text2" id="text2"></textarea></li>
                     <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="validate_password" value="" placeholder="Password to decrypt..." id="validate_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLongDecrypt" placeholder="time needed for decryption" value="" id="howLongDecrypt" /></li>
                 </ul>
-                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Decrypt</a>
+                <a style="margin:0 10px;" href="#" onClick="document.forms['decrypt'].submit();" class="grayButton">Decrypt</a>
             </form>
         </div>
         <div id="addkey">
@@ -99,7 +98,7 @@
                     <li><input type="text" name="searchstring" placeholder="String" value="" id="searchstring" /></li>
                 </ul>
                 <h2 style="color:#fff;">Download</h2>
-                
+
                 <ul class="edit rounded">
                     <li><input type="text" name="download" placeholder="http://" value="http://" id="download" /></li>
                     <li style="font-weight:normal;"><input type="checkbox" id="download" name="download" value="download">&nbsp;Do not store locally</li>
@@ -108,7 +107,7 @@
                 <ul class="edit rounded">
                     <li><textarea placeholder="The public key here" name="publickey" id="publickey"></textarea></li>
                 </ul>
-                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Import</a>                
+                <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Import</a>
             </form>
         </div>
 
@@ -146,8 +145,7 @@
                     </li>
                 </ul>
                 <h2 style="color:#fff">Secret Keys</h2>
-                <ul class="edit rounded">                    
-<!--                    <li><textarea placeholder="Your secret key here (stored within an HTML 5 database)" ></textarea></li>-->
+                <ul class="edit rounded">
                     <li>
                         <select id="secretkeys" name="Secret Keys" multiple="multiple">
                             <option value ="89117214f14b6dac" selected="selected">Alexander Willner</option>

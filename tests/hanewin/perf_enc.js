@@ -7,8 +7,8 @@
 module("haneWIN tests");
 
 /* test data ---------------------------------------------------------------- */
-var key_sec = ReadFile("data/test.gpg.secret.asc");
-var key_pub = ReadFile("data/test.gpg.public.asc");
+var key_sec = ReadFile("../data/test.gpg.secret.asc");
+var key_pub = ReadFile("../data/test.gpg.public.asc");
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
