@@ -2,17 +2,37 @@
 <html manifest="gpgmail.manifest">
     <head>
         <meta charset="UTF-8" />
+<!--
+ * I18N script for GPGMail_Mobile.
+ *
+ * @author  Alexander Willner <alex@willner.ws>
+ * @version 2011-02-22
+ * @see     http://gpgtools.org
+ * @license BSD
+ * @todo    I18N all text fragments.
+ * @todo    Implement more functionalities.
+-->
         <title>GPGMail</title>
+
+        <!-- styles -->
         <style type="text/css" media="screen">@import "layout/jqtouch.min.css";</style>
         <style type="text/css" media="screen">@import "layout/themes/jqt/theme.min.css";</style>
         <style type="text/css" media="screen">@import "layout/gpgmail.css";</style>
 
-        <script src="scripts/jquery/jquery.1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery-1.5.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="scripts/i18n/jquery.i18n.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="scripts/i18n/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
+
+        <!-- jQTouch -->
         <script src="scripts/jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="scripts/jqtouch/gpgmail.js" type="text/javascript" charset="utf-8"></script>
+        <script src="scripts/gpgmail.js" type="text/javascript" charset="utf-8"></script>
 
+        <!-- local database -->
         <script src="scripts/db/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
 
+        <!-- openPGP -->
         <script src="scripts/hanewin/rsa.js" type="text/javascript" charset="utf-8" defer="defer"></script>
         <script src="scripts/hanewin/aes-enc.js" type="text/javascript" charset="utf-8" defer="defer"></script>
         <script src="scripts/hanewin/base64.js" type="text/javascript" charset="utf-8" defer="defer"></script>
@@ -22,7 +42,30 @@
         <script src="scripts/openpgp/core.js" type="text/javascript" charset="utf-8" defer="defer"></script>
         <script src="scripts/openpgp/gpgmail.js" type="text/javascript" charset="utf-8" defer="defer"></script>
     </head>
+
     <body>
+
+        <!-- start: home screen -->
+        <div id="home" class="current">
+            <div class="toolbar">
+                <h1>GPGMail</h1>
+                <a class="button fade" id="infoButton" href="#about">((infoButton))</a>
+            </div>
+            <ul class="rounded">
+                <li class="arrow"><a href="#encrypt" class="slide" id="encryptButtonFront">((encryptButtonFront))</a></li>
+                <li class="arrow"><a href="#decrypt" class="slide" id="decryptButtonFront">((decryptButtonFront))</a></li>
+            </ul>
+            <ul class="individual">
+                <li><a href="#options" class="flip" id="optionsButton">((optionsButton))</a></li>
+                <li><a href="http://pledgie.com/campaigns/13482" target="_blank" id="donateButton">((donateButton))</a></li>
+            </ul>
+            <div class="info">
+                <p id="homeScreenInfo">((homeScreenInfo))</p>
+            </div>
+        </div>
+        <!-- end: home screen -->
+
+        <!-- start: about screen -->
         <div id="about" class="selectable">
                 <p><img src="images/gpgmail_icon.png" height="64"/></p>
                 <p><strong>GPG</strong>Mail mobile<br />Version 0.2<br />
@@ -37,6 +80,9 @@
                 </p>
                 <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
         </div>
+        <!-- end: about screen -->
+
+        <!-- start: not implemented screen -->
         <div id="notimplemented" class="selectable">
                 <p><img src="images/gpgmail_fail.png" height="64"/></p>
                 <p><strong>GPG</strong>Mail mobile<br />Version 0.2<br />
@@ -45,6 +91,9 @@
                 <p>work in progress...<br />this method is not implemented yet.</p>
                 <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
         </div>
+        <!-- end: not implemented screen -->
+
+        <!-- start: encrypt screen -->
         <div id="encrypt">
             <div class="toolbar">
                 <h1>Encrypt</h1>
@@ -62,7 +111,7 @@
                                 <option value ="07eae49adbcbe671">GPGMail Project Team</option>
                         </select>
                     </li>
-                    <li><textarea placeholder="Your unencrypted message here" name="text" id="text"></textarea></li>
+                    <li><textarea placeholder="Your unencrypted message here" name="rawtext" id="rawtext"></textarea></li>
                     <li>Sign message <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="sign_password" placeholder="Password to sign..." value="" id="sign_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLong" placeholder="time needed for encryption" value="" id="howLong" /></li>
@@ -71,6 +120,9 @@
                   <a style="margin:0 10px; color:#333;" href="#" id="sendMailButton" class="grayButton" target="_blank">Send Mail</a>
             </form>
         </div>
+        <!-- end: encrypt screen -->
+
+        <!-- start: decrypt screen -->
         <div id="decrypt">
             <div class="toolbar">
                 <h1>Decrypt</h1>
@@ -79,7 +131,7 @@
             </div>
             <form name="decrypt" action="javascript:decrypt();">
                 <ul class="edit rounded">
-                    <li><textarea placeholder="Your encrypted message here" name="text2" id="text2"></textarea></li>
+                    <li><textarea placeholder="Your encrypted message here" name="encryptedtext" id="encryptedtext"></textarea></li>
                     <li>Verify signature <span class="toggle"><input type="checkbox" /></span></li>
                     <li><input type="password" name="validate_password" value="" placeholder="Password to decrypt..." id="validate_password" /></li>
                     <li><input type="text" disabled="disabled" name="howLongDecrypt" placeholder="time needed for decryption" value="" id="howLongDecrypt" /></li>
@@ -87,6 +139,9 @@
                 <a style="margin:0 10px;" href="#" onClick="document.forms['decrypt'].submit();" class="grayButton" id="decryptButton">Decrypt</a>
             </form>
         </div>
+        <!-- end: decrpyt screen -->
+
+        <!-- start: add key screen -->
         <div id="addkey">
             <div class="toolbar">
                 <h1>Add Key</h1>
@@ -100,8 +155,8 @@
                 <h2 style="color:#fff;">Download</h2>
 
                 <ul class="edit rounded">
-                    <li><input type="text" name="download" placeholder="http://" value="http://" id="download" /></li>
-                    <li style="font-weight:normal;"><input type="checkbox" id="download" name="download" value="download">&nbsp;Do not store locally</li>
+                    <li><input type="text" placeholder="http://" value="http://" id="downloadURL" name="downloadURL" /></li>
+                    <li style="font-weight:normal;"><input type="checkbox" id="downloadStore" name="downloadStore" value="download">&nbsp;Do not store locally</li>
                 </ul>
                 <h2 style="color:#fff;">Copy & Paste</h2>
                 <ul class="edit rounded">
@@ -110,7 +165,9 @@
                 <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Import</a>
             </form>
         </div>
+        <!-- end: add key screen -->
 
+        <!-- start: options screen -->
         <div id="options">
             <div class="toolbar">
                 <h1>Options</h1>
@@ -153,26 +210,10 @@
                     </li>
 
                 </ul>
-                <a style="margin:0 10px; color:#000;" id="addPublicKeyButton" href="#addkey" class="whiteButton fade">Add</a>
+                <a style="margin:0 10px; color:#000;" id="addSecretKeyButton" href="#addkey" class="whiteButton fade">Add</a>
                 <a style="margin:0 10px;" href="#notimplemented" class="grayButton fade">Delete</a>
             </form>
         </div>
-        <div id="home" class="current">
-            <div class="toolbar">
-                <h1>GPGMail</h1>
-                <a class="button fade" id="infoButton" href="#about">About</a>
-            </div>
-            <ul class="rounded">
-                <li class="arrow"><a href="#encrypt" class="slide">Encrypt and Sign Mail</a></li>
-                <li class="arrow"><a href="#decrypt" class="slide">Decrypt and Validate Mail</a></li>
-            </ul>
-            <ul class="individual">
-                <li><a href="#options" class="flip">Options</a></li>
-                <li><a href="http://pledgie.com/campaigns/13482" target="_blank">Donate</a></li>
-            </ul>
-            <div class="info">
-                <p>Add this page to your home screen to view the custom icon, startup screen, and full screen mode.</p>
-            </div>
-        </div>
+        <!-- end: options screen -->
     </body>
 </html>

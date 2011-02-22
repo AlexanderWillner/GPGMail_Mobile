@@ -1,10 +1,36 @@
+/**
+ * Database implementation for GPGMail_Mobile.
+ *
+ * @author  Alexander Willner <alex@willner.ws>
+ * @version 2011-02-22
+ * @see     http://gpgtools.org
+ * @license BSD
+ */
+
+/* database binding -------------------------------------------------------- */
+//todo: invoke and use dbIsDefaultSign() here.
+$(function() {
+                $('input[name="defaultSign"]').bind('click',function() {
+                        if($(this).is(':checked')) {
+                            dbSetDefaultSign(1);
+                        } else  {
+                            dbSetDefaultSign(0);
+                        }
+                });
+});
+/* ------------------------------------------------------------------------- */
+
+
+/* database implementation ------------------------------------------------- */
 var db = null;
 
 try {
     if (window.openDatabase) {
         db = openDatabase("GPGMail", "1.0", "GPGMail mobile", 200000);
         if (!db)
-            alert("Failed to open the database on disk.  This is probably because the version was bad or there is not enough space left in this domain's quota");
+            alert("Failed to open the database on disk.  This is probably " +
+                  "because the version was bad or there is not enough space" +
+                  "left in this domain's quota");
     } else {
         alert("Couldn't open the database.");
     }
@@ -18,7 +44,9 @@ function loaded() {
         tx.executeSql("SELECT COUNT(*) FROM Options", [], function(result) {
             /**/;
         }, function(tx, error) {
-            tx.executeSql("CREATE TABLE Options (id REAL UNIQUE, defaultSign TEXT, defaultVerify TEXT)", [], function(result) { 
+            tx.executeSql("CREATE TABLE Options (id REAL UNIQUE, " +
+                          "defaultSign TEXT, defaultVerify TEXT)", [],
+                          function(result) {
                 addTestEntries();
             });
         });
@@ -27,20 +55,24 @@ function loaded() {
 
 function addTestEntries() {
     db.transaction(function (tx) {
-        tx.executeSql("INSERT INTO Options (id, defaultSign, defaultVerify) VALUES (?, ?, ?)", [1, 1, 1]);
-    }); 
+        tx.executeSql("INSERT INTO Options (id, defaultSign, defaultVerify) " +
+                      "VALUES (?, ?, ?)", [1, 1, 1]);
+    });
 }
 
 function dbSetDefaultSign(isSet) {
     db.transaction(function (tx) {
-        tx.executeSql("UPDATE Options SET defaultSign = ? WHERE id = 1", [isSet]);
-    }); 
+        tx.executeSql("UPDATE Options SET defaultSign = ? WHERE id = 1",
+                      [isSet]);
+    });
 }
 
 function dbIsDefaultSign() {
     db.transaction(function (tx) {
-        tx.executeSql("SELECT defaultSign FROM Options WHERE id = 1", [], function(result) { /* todo. */ }, function(tx, error) {dbError(tx, error)});
-    }); 
+        tx.executeSql("SELECT defaultSign FROM Options WHERE id = 1", [],
+                      function(result) { /* todo. */ },
+                      function(tx, error) {dbError(tx, error)});
+    });
 }
 
 function dbError(tx, error) {
@@ -49,8 +81,9 @@ function dbError(tx, error) {
 
 if (db != null)
     addEventListener('load', loaded, false);
-    
+
 
 function dbSave() {
     alert ("Not implemented yet");
 }
+/* ------------------------------------------------------------------------- */

@@ -2,6 +2,10 @@
  * Abstraction for the haneWIN OpenPGP implementation.
  *
  * @author  Alexander Willner <alex@willner.ws>
+ * @version 2011-02-22
+ * @see     http://gpgtools.org
+ * @license BSD
+ * @todo    Implement more functionalities
  */
 
 function OpenPGP_GetSecretInformation(key) {
